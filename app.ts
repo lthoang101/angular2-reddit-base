@@ -5,11 +5,16 @@ import { Component } from "angular2/core";
     selector: 'hello-world',
     template: `
   <div>
-    Hello world
+    Hello {{ name }}
   </div>
   `
 })
 class HelloWorld {
+    name: string;
+
+    constructor() {
+        this.name = 'Felipe';
+    }
 }
 
 bootstrap(HelloWorld);
