@@ -34,7 +34,7 @@ class HelloWorld {
                     {{ votes }}
                 </div>
                 <div class="label">
-                    16Points
+                    Points
                 </div>
             </div>
         </div>
@@ -73,9 +73,11 @@ class ArticleComponent {
 
     voteUp() {
         this.votes += 1;
+        return false;
     }
     voteDown() {
         this.votes -= 1;
+        return false;
     }
 }
 
