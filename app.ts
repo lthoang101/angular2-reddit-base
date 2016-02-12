@@ -20,8 +20,69 @@ class HelloWorld {
 }
 */
 
+
+
+@Component({
+    selector: 'reddit-article',
+    host: {
+        class: 'row' //Row is a Semantic UI class
+    },
+    template: `
+        <div class="four wide column center aligned votes">
+            <div class="ui statistic">
+                <div class="value">
+                    {{ votes }}
+                </div>
+                <div class="label">
+                    16Points
+                </div>
+            </div>
+        </div>
+
+        <div class="twelve wide column">
+            <a class="ui large header"href="{{link}}">
+                {{ title }}
+            </a>
+            <ul class="ui big horizontal list voters">
+                <li class="item">
+                    <a href (click)="voteUp()">
+                        <i class="arrow up icon"></i>
+                        upvote
+                    </a>
+                </li>
+                <li class="item">
+                    <a href (click)="voteDown()">
+                        <i class="arrow down icon"></i>
+                        downvote
+                    </a>
+                </li>
+            </ul>
+        </div>
+    `
+})
+class ArticleComponent {
+    votes: number;
+    title: string;
+    link: string;
+
+    constructor() {
+        this.title = 'Angular 2';
+        this.link = 'http://angular.io';
+        this.votes = 10;
+    }
+
+    voteUp() {
+        this.votes += 1;
+    }
+    voteDown() {
+        this.votes -= 1;
+    }
+}
+
+
 @Component({
     selector: 'reddit',
+    directives: [ArticleComponent],
     template: `
         <form class="ui large form segment">
             <h3 class="ui header">Add a Link</h3>
@@ -41,6 +102,10 @@ class HelloWorld {
                     Submit link
             </button>
         </form>
+
+        <div class="ui grid posts">
+            <reddit-article></reddit-article>
+        </div>
   `
 })
 class RedditApp {
